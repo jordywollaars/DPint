@@ -85,8 +85,16 @@ namespace DPINT_Wk1_Strategies
 
         private void ConvertNumbers()
         {
-            int number = _fromConverter.ToNumerical(FromText);
-            ToText = _toConverter.ToLocalString(number);
+            try
+            {
+                int number = _fromConverter.ToNumerical(FromText);
+                ToText = _toConverter.ToLocalString(number);
+
+            }
+            catch (FormatException e)
+            {
+                ToText = "Error!";
+            }
         }
     }
 }
