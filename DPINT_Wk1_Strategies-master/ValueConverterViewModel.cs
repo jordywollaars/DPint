@@ -22,7 +22,7 @@ namespace DPINT_Wk1_Strategies
             {
                 _fromText = value;
                 RaisePropertyChanged("FromText");
-                //this.ConvertNumbers();
+                this.ConvertNumbers();
             }
         }
 
@@ -47,7 +47,7 @@ namespace DPINT_Wk1_Strategies
                 _fromConverterName = value;
                 _fromConverter = NumberConverterFactory.GetConverter(_fromConverterName);
                 RaisePropertyChanged("FromConverterName");
-                //this.ConvertNumbers();
+                this.ConvertNumbers();
             }
         }
 
@@ -61,13 +61,14 @@ namespace DPINT_Wk1_Strategies
                 _toConverterName = value;
                 _toConverter = NumberConverterFactory.GetConverter(_toConverterName);
                 RaisePropertyChanged("ToConverterName");
-                //this.ConvertNumbers();
+                this.ConvertNumbers();
             }
         }
 
-        public NumberConverterFactory NumberConverterFactory;
         public ObservableCollection<string> ConverterNames { get; set; }
         public ICommand ConvertCommand { get; set; }
+
+        public NumberConverterFactory NumberConverterFactory { get; set; }
 
         public ValueConverterViewModel()
         {
@@ -75,8 +76,12 @@ namespace DPINT_Wk1_Strategies
             ConverterNames = new ObservableCollection<string>();
             NumberConverterFactory.ConverterNames.ToList().ForEach(x => ConverterNames.Add(x));
 
+            _fromConverter = NumberConverterFactory.GetConverter(ConverterNames[0]);
+            _toConverter = NumberConverterFactory.GetConverter(ConverterNames[0]);
+
             FromText = "0";
             ToText = "0";
+
             FromConverterName = ConverterNames[0];
             ToConverterName = ConverterNames[0];
 
@@ -89,7 +94,6 @@ namespace DPINT_Wk1_Strategies
             {
                 int number = _fromConverter.ToNumerical(FromText);
                 ToText = _toConverter.ToLocalString(number);
-
             }
             catch (FormatException e)
             {
