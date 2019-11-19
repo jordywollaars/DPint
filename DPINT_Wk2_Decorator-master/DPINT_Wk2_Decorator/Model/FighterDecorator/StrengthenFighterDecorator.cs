@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 
 namespace DPINT_Wk2_Decorator.Model.FighterDecorator
 {
-    public class DoubleHandedFighterDecorator : BaseFighterDecorator
+    public class StrengthenFighterDecorator : BaseFighterDecorator
     {
-        public DoubleHandedFighterDecorator(IFighter fighter) : base(fighter)
+        public StrengthenFighterDecorator(IFighter fighter) : base(fighter)
         {
-
+            AttackValue = (int)(AttackValue * 1.1);
+            DefenseValue = (int)(DefenseValue * 1.1);
         }
 
         public override Attack Attack()
         {
             var attack = base.Attack();
-
-            attack.Value += AttackValue;
-            attack.Messages.Add("Doubled the original attack value: " + AttackValue);
 
             return attack;
         }
@@ -26,9 +24,6 @@ namespace DPINT_Wk2_Decorator.Model.FighterDecorator
         public override void Defend(Attack attack)
         {
             base.Defend(attack);
-
-            attack.Messages.Add("One hand defended the attack: -" + DefenseValue);
-            attack.Value -= DefenseValue;
         }
     }
 }
