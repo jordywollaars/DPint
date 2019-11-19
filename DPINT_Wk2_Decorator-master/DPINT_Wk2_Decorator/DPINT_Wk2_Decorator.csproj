@@ -77,7 +77,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Attack.cs" />
+    <Compile Include="Model\BaseFighterDecorator.cs" />
     <Compile Include="Model\Fighter.cs" />
+    <Compile Include="Model\FighterDecorator\DoubleHandedFighterDecorator.cs" />
+    <Compile Include="Model\FighterDecorator\MinionFighterDecorator.cs" />
+    <Compile Include="Model\FighterDecorator\PoisonFighterDecorator.cs" />
+    <Compile Include="Model\FighterDecorator\ShieldFighterDecorator.cs" />
+    <Compile Include="Model\FighterDecorator\ShotgunFighterDecorator.cs" />
     <Compile Include="Model\FighterFactory.cs" />
     <Compile Include="Model\IFighter.cs" />
     <Compile Include="ViewModel\FighterOptionsViewModel.cs" />

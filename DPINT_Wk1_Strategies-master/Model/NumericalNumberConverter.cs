@@ -17,5 +17,7 @@ namespace DPINT_Wk1_Strategies.Model
         {
             return Int32.Parse(fromText);
         }
+
+
     }
 }
