@@ -8,7 +8,7 @@ namespace KoffieMachineDomain
 {
     public class Capuccino : Drink
     {
-        public override string Name => "Capuccino";
+        public string Name => "Capuccino";
         public virtual bool HasSugar { get; set; }
         public virtual Amount SugarAmount { get; set; }
         protected virtual Strength DrinkStrength { get; set; }

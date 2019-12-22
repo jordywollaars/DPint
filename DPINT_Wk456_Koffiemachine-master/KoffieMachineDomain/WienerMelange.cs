@@ -8,7 +8,7 @@ namespace KoffieMachineDomain
 {
     public class WienerMelange : Capuccino
     {
-        public override string Name => "Wiener Melange";
+        public string Name => "Wiener Melange";
 
         public WienerMelange()
         {

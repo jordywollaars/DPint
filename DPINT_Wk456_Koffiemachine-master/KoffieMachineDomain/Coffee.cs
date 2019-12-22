@@ -15,7 +15,7 @@ namespace KoffieMachineDomain
         public virtual Amount MilkAmount { get; set; }
         public virtual Strength DrinkStrength { get; set; }
 
-        public override string Name => "Koffie";
+        public  string Name => "Koffie";
 
         public override double GetPrice()
         {
