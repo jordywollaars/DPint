@@ -20,12 +20,12 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         private DrinkFactory _drinkFactory;
 
         private IDrink _drink;
+        public bool DrinkExists => _drink != null ? true : false;
 
         public string DrinkName
         {
             get { return _drink?.Name; }
         }
-
         public double? DrinkPrice
         {
             get { return _drink?.GetPrice(); }
@@ -37,14 +37,12 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             get { return _coffeeStrength; }
             set { _coffeeStrength = value; RaisePropertyChanged(() => CoffeeStrength); }
         }
-
         private Amount _sugarAmount;
         public Amount SugarAmount
         {
             get { return _sugarAmount; }
             set { _sugarAmount = value; RaisePropertyChanged(() => SugarAmount); }
         }
-
         private Amount _milkAmount;
         public Amount MilkAmount
         {
@@ -56,129 +54,29 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         {
             _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>());
-            //_selectedDrink = null;
-            //switch (drinkName)
-            //{
-            //    case "Coffee":
-            //        _selectedDrink = new Coffee() { DrinkStrength = CoffeeStrength };
-            //        break;
-            //    case "Espresso":
-            //        _selectedDrink = new Espresso();
-            //        break;
-            //    case "Capuccino":
-            //        _selectedDrink = new Capuccino();
-            //        break;
-            //    case "Wiener Melange":
-            //        _selectedDrink = new WienerMelange();
-            //        break;
-            //    case "Café au Lait":
-            //        _selectedDrink = new CafeAuLait();
-            //        break;
-            //    default:
-            //        LogText.Add($"Could not make {drinkName}, recipe not found.");
-            //        break;
-            //}
 
-            if (_drink != null)
-            {
-                _mainVM.PaymentVM.RemainingPriceToPay = _drink.GetPrice();
-                _mainVM.LogText.Add($"Selected {DrinkName}, price: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
-                RaisePropertyChanged(() => _mainVM.PaymentVM.RemainingPriceToPay);
-                RaisePropertyChanged(() => DrinkName);
-                RaisePropertyChanged(() => DrinkPrice);
-            }
+            HandleNewDrink();
         });
-
         public ICommand DrinkWithSugarCommand => new RelayCommand<string>((drinkName) =>
         {
             _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>() { "Sugar" });
-            //_selectedDrink = null;
-            //RemainingPriceToPay = 0;
-            //switch (drinkName)
-            //{
-            //    case "Coffee":
-            //        _selectedDrink = new Coffee() { DrinkStrength = CoffeeStrength, HasSugar = true, SugarAmount = SugarAmount };
-            //        break;
-            //    case "Espresso":
-            //        _selectedDrink = new Espresso() { HasSugar = true, SugarAmount = SugarAmount };
-            //        break;
-            //    case "Capuccino":
-            //        _selectedDrink = new Capuccino() { HasSugar = true, SugarAmount = SugarAmount };
-            //        break;
-            //    case "Wiener Melange":
-            //        _selectedDrink = new WienerMelange() { HasSugar = true, SugarAmount = SugarAmount };
-            //        break;
-            //    default:
-            //        LogText.Add($"Could not make {drinkName} with sugar, recipe not found.");
-            //        break;
-            //}
 
-            if (_drink != null)
-            {
-                _mainVM.PaymentVM.RemainingPriceToPay = _drink.GetPrice();
-                _mainVM.LogText.Add($"Selected {DrinkName}, price: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
-                RaisePropertyChanged(() => _mainVM.PaymentVM.RemainingPriceToPay);
-                RaisePropertyChanged(() => DrinkName);
-                RaisePropertyChanged(() => DrinkPrice);
-            }
+            HandleNewDrink();
         });
-
         public ICommand DrinkWithMilkCommand => new RelayCommand<string>((drinkName) =>
         {
             _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>() { "Milk" });
-            //switch (drinkName)
-            //{
-            //    case "Coffee":
-            //        _selectedDrink = new Coffee() { DrinkStrength = CoffeeStrength, HasMilk = true, MilkAmount = MilkAmount };
-            //        break;
-            //    case "Espresso":
-            //        _selectedDrink = new Espresso() { HasMilk = true, MilkAmount = MilkAmount };
-            //        break;
-            //    default:
-            //        LogText.Add($"Could not make {drinkName} with milk, recipe not found.");
-            //        break;
-            //}
 
-            if (_drink != null)
-            {
-                _mainVM.PaymentVM.RemainingPriceToPay = _drink.GetPrice();
-                _mainVM.LogText.Add($"Selected {DrinkName}, price: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
-                RaisePropertyChanged(() => _mainVM.PaymentVM.RemainingPriceToPay);
-                RaisePropertyChanged(() => DrinkName);
-                RaisePropertyChanged(() => DrinkPrice);
-            }
+            HandleNewDrink();
         });
-
         public ICommand DrinkWithSugarAndMilkCommand => new RelayCommand<string>((drinkName) =>
         {
             _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>() { "Sugar", "Milk" });
 
-            //_selectedDrink = null;
-            //RemainingPriceToPay = 0;
-            //switch (drinkName)
-            //{
-            //    case "Coffee":
-            //        _selectedDrink = new Coffee() { DrinkStrength = CoffeeStrength, HasSugar = true, SugarAmount = SugarAmount, HasMilk = true, MilkAmount = MilkAmount };
-            //        break;
-            //    case "Espresso":
-            //        _selectedDrink = new Espresso() { HasSugar = true, SugarAmount = SugarAmount, HasMilk = true, MilkAmount = MilkAmount };
-            //        break;
-            //    default:
-            //        LogText.Add($"Could not make {drinkName} with milk, recipe not found.");
-            //        break;
-            //}
-
-            if (_drink != null)
-            {
-                _mainVM.PaymentVM.RemainingPriceToPay = _drink.GetPrice();
-                _mainVM.LogText.Add($"Selected {DrinkName}, price: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
-                RaisePropertyChanged(() => _mainVM.PaymentVM.RemainingPriceToPay);
-                RaisePropertyChanged(() => DrinkName);
-                RaisePropertyChanged(() => DrinkPrice);
-            }
+            HandleNewDrink();
         });
 
         public DrinkViewModel(MainViewModel mainVM)
@@ -196,6 +94,17 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             _drink.LogDrinkMaking(LogText);
 
             LogText.Add($"Finished making {DrinkName}");
+        }
+
+        private void HandleNewDrink()
+        {
+            if (_drink != null)
+            {
+                _mainVM.PaymentVM.RemainingPriceToPay = _drink.GetPrice();
+                _mainVM.LogText.Add($"Selected {DrinkName}, price: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
+                RaisePropertyChanged(() => DrinkName);
+                RaisePropertyChanged(() => DrinkPrice);
+            }
         }
     }
 }

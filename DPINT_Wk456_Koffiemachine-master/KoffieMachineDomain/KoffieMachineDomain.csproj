@@ -57,6 +57,7 @@
     <Compile Include="DrinkFactory\DrinkFactory.cs" />
     <Compile Include="IDrink.cs" />
     <Compile Include="Espresso.cs" />
+    <Compile Include="Observable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strength.cs" />
     <Compile Include="WienerMelange.cs" />
