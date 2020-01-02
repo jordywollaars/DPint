@@ -15,7 +15,7 @@ namespace KoffieMachineDomain.DrinkDecorators
 
         public override double GetPrice()
         {
-            return base.GetPrice() * 2;
+            return base.GetPrice() * 2; //TODO: fix price to be baseprice * 2
         }
     }
 }
