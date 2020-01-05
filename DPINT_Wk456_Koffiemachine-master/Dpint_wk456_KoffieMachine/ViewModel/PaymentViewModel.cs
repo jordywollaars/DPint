@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using KoffieMachineDomain.Payment;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,8 +16,10 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
     {
         private MainViewModel _mainViewModel;
 
-        private Dictionary<string, double> _cashOnCards;
-        public double PaymentCardRemainingAmount => _cashOnCards.ContainsKey(SelectedPaymentCardUsername ?? "") ? _cashOnCards[SelectedPaymentCardUsername] : 0;
+        private Payment _payment;
+
+        public double PaymentCardRemainingAmount 
+            => _payment.CardPayment.CashOnCards.ContainsKey(SelectedPaymentCardUsername ?? "") ? _payment.CardPayment.CashOnCards[SelectedPaymentCardUsername] : 0;
 
         private string _selectedPaymentCardUsername;
         public string SelectedPaymentCardUsername
@@ -52,24 +55,15 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         public PaymentViewModel(MainViewModel mainVM)
         {
             _mainViewModel = mainVM;
+            _payment = new Payment();
 
-            SetupCards();
             AddPaymentCardUsernames();
         }
 
         #region ClassSetup
-        private void SetupCards()
-        {
-            _cashOnCards = new Dictionary<string, double>();
-            _cashOnCards["Arjen"] = 5.0;
-            _cashOnCards["Bert"] = 3.5;
-            _cashOnCards["Chris"] = 7.0;
-            _cashOnCards["Daan"] = 6.0;
-        }
-
         private void AddPaymentCardUsernames()
         {
-            PaymentCardUsernames = new ObservableCollection<string>(_cashOnCards.Keys);
+            PaymentCardUsernames = new ObservableCollection<string>(_payment.CardPayment.CashOnCards.Keys);
             SelectedPaymentCardUsername = PaymentCardUsernames[0];
         }
         #endregion
@@ -88,8 +82,9 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             }
             else if (!payWithCard)
             {
-                PayWithCash(insertedMoney);
+                insertedMoney = PayWithCash(insertedMoney);
             }
+
             _mainViewModel.LogText.Add($"Inserted {insertedMoney.ToString("C", CultureInfo.CurrentCulture)}, Remaining: {RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}.");
 
             if (RemainingPriceToPay == 0)
@@ -101,26 +96,18 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 
         private double PayWithCard()
         {
-            double insertedMoney = _cashOnCards[SelectedPaymentCardUsername];
-            if (RemainingPriceToPay <= insertedMoney)
-            {
-                _cashOnCards[SelectedPaymentCardUsername] = insertedMoney - RemainingPriceToPay;
-                RemainingPriceToPay = 0;
-            }
-            else // Pay what you can, fill up with coins later.
-            {
-                _cashOnCards[SelectedPaymentCardUsername] = 0;
-
-                RemainingPriceToPay -= insertedMoney;
-            }
+            double insertedMoney = _payment.CardPayment.Pay(SelectedPaymentCardUsername, ref _remainingPriceToPay);
 
             RaisePropertyChanged(() => PaymentCardRemainingAmount);
             return insertedMoney;
         }
 
-        private void PayWithCash(double insertedMoney)
+        private double PayWithCash(double insertedMoney)
         {
-            RemainingPriceToPay = Math.Max(Math.Round(RemainingPriceToPay - insertedMoney, 2), 0);
+            _payment.CashPayment.Pay(insertedMoney, ref _remainingPriceToPay);
+
+            RaisePropertyChanged(() => PaymentCardRemainingAmount);
+            return insertedMoney;
         }
         #endregion
     }

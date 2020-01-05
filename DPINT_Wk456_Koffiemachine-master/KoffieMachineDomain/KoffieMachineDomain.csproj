@@ -46,35 +46,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Amount.cs" />
-    <Compile Include="DispenserAdapter\TeaBlendAndHotChoc\HotChocolateAdapter.cs" />
-    <Compile Include="DispenserAdapter\SpecialCoffee\SpecialCoffeeAdapter.cs" />
-    <Compile Include="DispenserAdapter\TeaBlendAndHotChoc\TeaAdapter.cs" />
-    <Compile Include="DrinkDecorators\SpecialDrinkDecorators\AmarettoDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\SpecialDrinkDecorators\CognacDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\SpecialDrinkDecorators\WiskeyDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\WhippedcreamDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\SpecialDrinkDecorators\CointreauDrinkDecorator.cs" />
-    <Compile Include="OLD\CafeAuLait.cs" />
-    <Compile Include="OLD\Capuccino.cs" />
-    <Compile Include="OLD\Coffee.cs" />
-    <Compile Include="Drink.cs" />
-    <Compile Include="DrinkDecorators\BaseDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\CafeAuLaitDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\CapuccinoDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\CoffeeDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\EspressoDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\MilkDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\SugarDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\WienerMelangeDrinkDecorator.cs" />
-    <Compile Include="DrinkFactory\DrinkFactory.cs" />
-    <Compile Include="IDrink.cs" />
-    <Compile Include="OLD\Espresso.cs" />
-    <Compile Include="Observable.cs" />
+    <Compile Include="Drink\Amount.cs" />
+    <Compile Include="Drink\DispenserAdapter\TeaBlendAndHotChoc\HotChocolateAdapter.cs" />
+    <Compile Include="Drink\DispenserAdapter\SpecialCoffee\SpecialCoffeeAdapter.cs" />
+    <Compile Include="Drink\DispenserAdapter\TeaBlendAndHotChoc\TeaAdapter.cs" />
+    <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\AmarettoDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\CognacDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\WiskeyDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\WhippedcreamDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\CointreauDrinkDecorator.cs" />
+    <Compile Include="Drink\OLD\CafeAuLait.cs" />
+    <Compile Include="Drink\OLD\Capuccino.cs" />
+    <Compile Include="Drink\OLD\Coffee.cs" />
+    <Compile Include="Drink\Drink.cs" />
+    <Compile Include="Drink\DrinkDecorators\BaseDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\CafeAuLaitDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\CapuccinoDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\CoffeeDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\EspressoDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\MilkDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\SugarDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkDecorators\WienerMelangeDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkFactory\DrinkFactory.cs" />
+    <Compile Include="Drink\IDrink.cs" />
+    <Compile Include="Drink\OLD\Espresso.cs" />
+    <Compile Include="Payment\CardPayment.cs" />
+    <Compile Include="Payment\CashPayment.cs" />
+    <Compile Include="Payment\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DispenserAdapter\SpecialCoffee\SpecialCoffeeJSONHandler.cs" />
-    <Compile Include="Strength.cs" />
-    <Compile Include="OLD\WienerMelange.cs" />
+    <Compile Include="Drink\DispenserAdapter\SpecialCoffee\SpecialCoffeeJSONHandler.cs" />
+    <Compile Include="Drink\Strength.cs" />
+    <Compile Include="Drink\OLD\WienerMelange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

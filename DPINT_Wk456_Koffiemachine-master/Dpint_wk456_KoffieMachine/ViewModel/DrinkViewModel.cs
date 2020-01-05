@@ -1,8 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using KoffieMachineDomain;
-using KoffieMachineDomain.DispenserAdapter;
-using KoffieMachineDomain.DrinkFactory;
+using KoffieMachineDomain.Drink;
+using KoffieMachineDomain.Drink.DrinkFactory;
+using KoffieMachineDomain.Drink.DispenserAdapter.SpecialCoffee;
+using KoffieMachineDomain.Drink.DispenserAdapter.TeaBlendAndHotChoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

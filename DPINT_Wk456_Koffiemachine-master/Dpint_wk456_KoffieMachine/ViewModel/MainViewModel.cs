@@ -1,7 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using KoffieMachineDomain;
-using KoffieMachineDomain.DrinkFactory;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
