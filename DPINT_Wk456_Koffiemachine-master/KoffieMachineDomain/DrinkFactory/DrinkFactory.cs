@@ -28,8 +28,7 @@ namespace KoffieMachineDomain.DrinkFactory
                 switch (configurations[i])
                 {
                     case "Coffee":
-                        drink = new CoffeeDrinkDecorator(drink);
-                        drink = new StrengthDrinkDecorator(drink, _drinkStrength);
+                        drink = new CoffeeDrinkDecorator(drink, _drinkStrength);
                         break;
                     case "Espresso":
                         drink = new EspressoDrinkDecorator(drink);
@@ -39,7 +38,6 @@ namespace KoffieMachineDomain.DrinkFactory
                         break;
                     case "Wiener Melange":
                         drink = new WienerMelangeDrinkDecorator(drink);
-                        drink = new StrengthDrinkDecorator(drink, Strength.Weak);
                         break;
                     case "Café au Lait":
                         drink = new CafeAuLaitDrinkDecorator(drink);

@@ -65,7 +65,6 @@
     <Compile Include="DrinkDecorators\CoffeeDrinkDecorator.cs" />
     <Compile Include="DrinkDecorators\EspressoDrinkDecorator.cs" />
     <Compile Include="DrinkDecorators\MilkDrinkDecorator.cs" />
-    <Compile Include="DrinkDecorators\StrengthDrinkDecorator.cs" />
     <Compile Include="DrinkDecorators\SugarDrinkDecorator.cs" />
     <Compile Include="DrinkDecorators\WienerMelangeDrinkDecorator.cs" />
     <Compile Include="DrinkFactory\DrinkFactory.cs" />
