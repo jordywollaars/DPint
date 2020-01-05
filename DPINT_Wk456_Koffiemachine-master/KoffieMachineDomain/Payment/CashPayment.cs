@@ -8,9 +8,16 @@ namespace KoffieMachineDomain.Payment
 {
     public class CashPayment
     {
-        public double Pay(double insertedMoney, ref double remainingPriceToPay)
+        private Payment _payment;
+
+        public CashPayment(Payment payment)
         {
-            remainingPriceToPay = Math.Max(Math.Round(remainingPriceToPay - insertedMoney, 2), 0);
+            _payment = payment;
+        }
+
+        public double Pay(double insertedMoney)
+        {
+            _payment.RemainingPriceToPay = Math.Max(Math.Round(_payment.RemainingPriceToPay - insertedMoney, 2), 0);
             return insertedMoney;
         }
     }

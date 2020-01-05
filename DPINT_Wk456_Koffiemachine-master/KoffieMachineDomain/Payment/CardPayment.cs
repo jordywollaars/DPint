@@ -14,8 +14,11 @@ namespace KoffieMachineDomain.Payment
             get { return _cashOnCards; }
         }
 
-        public CardPayment()
+        private Payment _payment;
+
+        public CardPayment(Payment payment)
         {
+            _payment = payment;
             SetupCards();
         }
 
@@ -28,19 +31,19 @@ namespace KoffieMachineDomain.Payment
             _cashOnCards["Daan"] = 6.0;
         }
 
-        public double Pay(string username, ref double remainingPriceToPay)
+        public double Pay(string username)
         {
             double insertedMoney = _cashOnCards[username];
-            if (remainingPriceToPay <= insertedMoney)
+            if (_payment.RemainingPriceToPay <= insertedMoney)
             {
-                _cashOnCards[username] = insertedMoney - remainingPriceToPay;
-                remainingPriceToPay = 0;
+                _cashOnCards[username] = insertedMoney - _payment.RemainingPriceToPay;
+                _payment.RemainingPriceToPay = 0;
             }
             else // Pay what you can, fill up with coins later.
             {
                 _cashOnCards[username] = 0;
 
-                remainingPriceToPay -= insertedMoney;
+                _payment.RemainingPriceToPay -= insertedMoney;
             }
             return insertedMoney;
         }

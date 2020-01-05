@@ -12,10 +12,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using KoffieMachineDomain.Payment;
 
 namespace Dpint_wk456_KoffieMachine.ViewModel
 {
-    public class DrinkViewModel : ViewModelBase
+    public class DrinkViewModel : ViewModelBase, IObserver<Payment>
     {
         private MainViewModel _mainVM;
 
@@ -28,9 +29,9 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         {
             get { return _drink?.Name; }
         }
-        public double? DrinkPrice
+        public double DrinkPrice
         {
-            get { return _drink?.GetPrice(); }
+            get { return _drink.GetPrice(); }
         }
 
         public IEnumerable<string> TeaBlends
@@ -125,11 +126,33 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         {
             if (_drink != null)
             {
-                _mainVM.PaymentVM.RemainingPriceToPay = _drink.GetPrice();
+                _mainVM.PaymentVM.SetRemainingPrice(DrinkPrice);
                 _mainVM.LogText.Add($"Selected {DrinkName}, price: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
                 RaisePropertyChanged(() => DrinkName);
                 RaisePropertyChanged(() => DrinkPrice);
             }
+        }
+
+        public void OnNext(Payment value)
+        {
+            _mainVM.LogText.Add($"Inserted {_mainVM.PaymentVM.LastInsertedMoney.ToString("C", CultureInfo.CurrentCulture)}, Remaining: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}.");
+
+            if (_mainVM.PaymentVM.RemainingPriceToPay == 0)
+            {
+                LogDrinkMaking(_mainVM.LogText);
+                _mainVM.LogText.Add("------------------");
+                _drink = null;
+            }
+        }
+
+        public void OnError(Exception error)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnCompleted()
+        {
+            throw new NotImplementedException();
         }
     }
 }

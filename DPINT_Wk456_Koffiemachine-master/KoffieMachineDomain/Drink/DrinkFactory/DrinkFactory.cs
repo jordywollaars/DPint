@@ -19,6 +19,15 @@ namespace KoffieMachineDomain.Drink.DrinkFactory
         private string _teaBlend;
         private string _specialCoffee;
 
+        private Dictionary<string, IDrink> _drinks;
+
+        //public DrinkFactory()
+        //{
+        //    _drinks = new Dictionary<string, IDrink>();
+
+        //    _drinks = new CoffeeDrinkDecorator(_drinkStrength);
+        //}
+
         public IDrink CreateDrink(string drinkName, IEnumerable<string> options)
         {
             IDrink drink = new Drink();
@@ -90,7 +99,8 @@ namespace KoffieMachineDomain.Drink.DrinkFactory
                         drink = new CognacDrinkDecorator(drink);
                         break;
                     default:
-                        return drink;
+                        drink = new MissingIngrediëntDrinkDecorator(drink);
+                        break;
                 }
             }
 
