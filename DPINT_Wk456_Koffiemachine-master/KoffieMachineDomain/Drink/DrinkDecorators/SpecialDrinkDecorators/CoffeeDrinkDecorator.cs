@@ -24,5 +24,10 @@ namespace KoffieMachineDomain.Drink.DrinkDecorators
             log.Add($"Setting coffee strength to {DrinkStrength}.");
             log.Add($"Filling with coffee");
         }
+
+        public override double GetPrice()
+        {
+            return base.GetPrice();
+        }
     }
 }

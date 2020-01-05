@@ -8,30 +8,21 @@ namespace KoffieMachineDomain.Drink.DrinkDecorators
 {
     class MilkDrinkDecorator : BaseDrinkDecorator
     {
-        public bool IsCreamed { get; set; }
         public Amount MilkAmount { get; set; }
 
-        public MilkDrinkDecorator(IDrink drink, Amount milkAmount, bool isCreamed) : base(drink)
+        public MilkDrinkDecorator(IDrink drink, Amount milkAmount) : base(drink)
         {
             MilkAmount = milkAmount;
-            IsCreamed = isCreamed;
         }
 
         public override void LogDrinkMaking(ICollection<string> log)
         {
             base.LogDrinkMaking(log);
 
-            if (!IsCreamed)
-            {
-                log.Add($"Setting milk amount to {MilkAmount}.");
-            }
+            log.Add($"Setting milk amount to {MilkAmount}.");
+            //log.Add("Creaming milk...");
 
-            if (IsCreamed)
-            {
-                log.Add("Creaming milk...");
-            }
-
-            log.Add($"Adding milk to {base.Name}...");
+            log.Add($"Adding milk...");
         }
 
         public override double GetPrice()

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KoffieMachineDomain.Drink.DrinkDecorators
 {
-    class MissingIngrediëntDrinkDecorator : CapuccinoDrinkDecorator
+    class MissingIngrediëntDrinkDecorator : BaseDrinkDecorator
     {
 
         public MissingIngrediëntDrinkDecorator(IDrink drink) : base(drink)

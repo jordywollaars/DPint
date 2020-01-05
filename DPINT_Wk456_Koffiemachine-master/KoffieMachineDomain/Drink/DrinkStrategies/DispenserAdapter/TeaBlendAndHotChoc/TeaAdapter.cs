@@ -13,11 +13,9 @@ namespace KoffieMachineDomain.Drink.DispenserAdapter.TeaBlendAndHotChoc
 
         private TeaBlendRepository _teaBlendRepository;
 
-        public TeaAdapter(string teaBlend)
+        public TeaAdapter()
         {
-            _teaBlendRepository = new TeaBlendRepository();
-            this.Blend = _teaBlendRepository.GetTeaBlend(teaBlend);
-            Name = Blend.Name;
+
         }
 
         public string Name { get; set; }
@@ -31,6 +29,13 @@ namespace KoffieMachineDomain.Drink.DispenserAdapter.TeaBlendAndHotChoc
         {
             log.Add($"Making {Name}...");
             log.Add($"Heating up...");
+        }
+
+        public void SetTeaBlend(string teaBlend)
+        {
+            _teaBlendRepository = new TeaBlendRepository();
+            this.Blend = _teaBlendRepository.GetTeaBlend(teaBlend);
+            Name = Blend.Name;
         }
     }
 }

@@ -12,9 +12,8 @@ namespace KoffieMachineDomain.Drink.DispenserAdapter.SpecialCoffee
 
         public string Name { get; set; }
 
-        public SpecialCoffeeAdapter(string coffeeName) : base()
+        public SpecialCoffeeAdapter() : base()
         {
-            Name = coffeeName;
         }
 
         public virtual double GetPrice()
@@ -28,8 +27,9 @@ namespace KoffieMachineDomain.Drink.DispenserAdapter.SpecialCoffee
             log.Add($"Heating up...");
         }
 
-        public ICollection<string> GetOptions()
+        public ICollection<string> GetOptions(string specialCoffeeName)
         {
+            Name = specialCoffeeName;
             return base.SpecialCoffees[Name];
         }
     }

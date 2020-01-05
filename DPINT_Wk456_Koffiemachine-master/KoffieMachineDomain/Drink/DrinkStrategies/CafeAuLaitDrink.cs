@@ -6,24 +6,23 @@ using System.Threading.Tasks;
 
 namespace KoffieMachineDomain.Drink.DrinkDecorators
 {
-    class EspressoDrinkDecorator : BaseDrinkDecorator
+    class CafeAuLaitDrink : Drink
     {
-        public EspressoDrinkDecorator(IDrink drink) : base(drink)
+        public CafeAuLaitDrink() : base()
         {
-            base.Name = "Espresso";
+            base.Name = "Café au Lait";
         }
 
         public override void LogDrinkMaking(ICollection<string> log)
         {
             base.LogDrinkMaking(log);
-            log.Add($"Setting coffee strength to {Strength.Strong}.");
-            log.Add($"Setting coffee amount to {Amount.Few}.");
-            log.Add("Filling with coffee...");
+            log.Add("Filling half with coffee...");
+            log.Add("Filling other half with milk...");
         }
 
         public override double GetPrice()
         {
-            return base.GetPrice() + 0.7;
+            return base.GetPrice() + 0.5;
         }
     }
 }

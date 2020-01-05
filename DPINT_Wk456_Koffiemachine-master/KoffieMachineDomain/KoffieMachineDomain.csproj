@@ -47,44 +47,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Drink\Amount.cs" />
-    <Compile Include="Drink\DispenserAdapter\TeaBlendAndHotChoc\HotChocolateAdapter.cs" />
-    <Compile Include="Drink\DispenserAdapter\SpecialCoffee\SpecialCoffeeAdapter.cs" />
-    <Compile Include="Drink\DispenserAdapter\TeaBlendAndHotChoc\TeaAdapter.cs" />
+    <Compile Include="Drink\DrinkStrategies\DispenserAdapter\TeaBlendAndHotChoc\HotChocolateAdapter.cs" />
+    <Compile Include="Drink\DrinkStrategies\DispenserAdapter\SpecialCoffee\SpecialCoffeeAdapter.cs" />
+    <Compile Include="Drink\DrinkStrategies\DispenserAdapter\TeaBlendAndHotChoc\TeaAdapter.cs" />
     <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\AmarettoDrinkDecorator.cs" />
     <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\CognacDrinkDecorator.cs" />
     <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\WiskeyDrinkDecorator.cs" />
     <Compile Include="Drink\DrinkDecorators\WhippedcreamDrinkDecorator.cs" />
     <Compile Include="Drink\DrinkDecorators\SpecialDrinkDecorators\CointreauDrinkDecorator.cs" />
     <Compile Include="Drink\DrinkDecorators\MissingIngrediëntDrinkDecorator.cs" />
-    <Compile Include="Drink\DrinkStrategies\CafeAuLait.cs" />
-    <Compile Include="Drink\DrinkStrategies\Capuccino.cs" />
-    <Compile Include="Drink\DrinkStrategies\Coffee.cs" />
+    <Compile Include="Drink\OLD\CafeAuLait.cs" />
+    <Compile Include="Drink\OLD\Capuccino.cs" />
+    <Compile Include="Drink\OLD\Coffee.cs" />
     <Compile Include="Drink\Drink.cs" />
     <Compile Include="Drink\DrinkDecorators\BaseDrinkDecorator.cs" />
-    <Compile Include="Drink\DrinkDecorators\CafeAuLaitDrinkDecorator.cs" />
-    <Compile Include="Drink\DrinkDecorators\CapuccinoDrinkDecorator.cs" />
-    <Compile Include="Drink\DrinkDecorators\CoffeeDrinkDecorator.cs" />
-    <Compile Include="Drink\DrinkDecorators\EspressoDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkStrategies\CafeAuLaitDrink.cs" />
+    <Compile Include="Drink\DrinkStrategies\CapuccinoDrink.cs" />
+    <Compile Include="Drink\DrinkStrategies\CoffeeDrink.cs" />
+    <Compile Include="Drink\DrinkStrategies\EspressoDrink.cs" />
     <Compile Include="Drink\DrinkDecorators\MilkDrinkDecorator.cs" />
     <Compile Include="Drink\DrinkDecorators\SugarDrinkDecorator.cs" />
-    <Compile Include="Drink\DrinkDecorators\WienerMelangeDrinkDecorator.cs" />
+    <Compile Include="Drink\DrinkStrategies\WienerMelangeDrink.cs" />
     <Compile Include="Drink\DrinkFactory\DrinkFactory.cs" />
     <Compile Include="Drink\IDrink.cs" />
-    <Compile Include="Drink\DrinkStrategies\Espresso.cs" />
+    <Compile Include="Drink\OLD\Espresso.cs" />
     <Compile Include="Observable.cs" />
     <Compile Include="Payment\CardPayment.cs" />
     <Compile Include="Payment\CashPayment.cs" />
     <Compile Include="Payment\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Drink\DispenserAdapter\SpecialCoffee\SpecialCoffeeJSONHandler.cs" />
+    <Compile Include="Drink\DrinkStrategies\DispenserAdapter\SpecialCoffee\SpecialCoffeeJSONHandler.cs" />
     <Compile Include="Drink\Strength.cs" />
-    <Compile Include="Drink\DrinkStrategies\WienerMelange.cs" />
+    <Compile Include="Drink\OLD\WienerMelange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Drink\OLD\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

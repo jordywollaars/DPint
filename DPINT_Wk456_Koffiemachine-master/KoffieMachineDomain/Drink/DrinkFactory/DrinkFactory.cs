@@ -21,70 +21,41 @@ namespace KoffieMachineDomain.Drink.DrinkFactory
 
         private Dictionary<string, IDrink> _drinks;
 
-        //public DrinkFactory()
-        //{
-        //    _drinks = new Dictionary<string, IDrink>();
-
-        //    _drinks = new CoffeeDrinkDecorator(_drinkStrength);
-        //}
+        public DrinkFactory()
+        {
+            SetupDrinkStrategies();
+        }
 
         public IDrink CreateDrink(string drinkName, IEnumerable<string> options)
         {
-            IDrink drink = new Drink();
-            List<string> configurations = SetupConfiguarions(drinkName, options);
+            IDrink drink = GetDrink(drinkName);
 
-            bool creamMilk = false;
+            if(drinkName == "Special")
+            {
+                options = ((SpecialCoffeeAdapter)drink).GetOptions(_specialCoffee).ToList();
+            }
+            else if(drinkName == "Tea")
+            {
+                ((TeaAdapter)drink).SetTeaBlend(_teaBlend);
+            }
+
+            List<string> configurations = options.ToList();
 
             for (int i = 0; i < configurations.Count; i++)
             {
                 switch (configurations[i])
                 {
-                    case "Special":
-                        drink = new SpecialCoffeeAdapter(_specialCoffee);
-                        configurations = ((SpecialCoffeeAdapter)drink).GetOptions().ToList();
-                        i--;
-                        break;
-                    case "Tea":
-                        drink = new TeaAdapter(_teaBlend);
-                        break;
-                    case "Chocolate":
-                        drink = new HotChocolateAdapter(false);
-                        break;
-                    case "Chocolate Deluxe":
-                        drink = new HotChocolateAdapter(true);
-                        break;
-                    case "Coffee":
-                        drink = new CoffeeDrinkDecorator(drink, _drinkStrength);
-                        break;
-                    case "Espresso":
-                        drink = new EspressoDrinkDecorator(drink);
-                        creamMilk = true;
-                        drink = new MilkDrinkDecorator(drink, _milkAmount, creamMilk);
-                        break;
-                    case "Capuccino":
-                        drink = new CapuccinoDrinkDecorator(drink);
-                        creamMilk = true;
-                        drink = new MilkDrinkDecorator(drink, _milkAmount, creamMilk);
-                        break;
-                    case "Wiener Melange":
-                        drink = new WienerMelangeDrinkDecorator(drink);
-                        creamMilk = true;
-                        drink = new MilkDrinkDecorator(drink, _milkAmount, creamMilk);
-                        break;
-                    case "Café au Lait":
-                        drink = new CafeAuLaitDrinkDecorator(drink);
-                        break;
                     case "Sugar":
                         drink = new SugarDrinkDecorator(drink, _sugarAmount);
                         break;
                     case "Milk":
-                        if (!creamMilk)
-                        {
-                            drink = new MilkDrinkDecorator(drink, _milkAmount, creamMilk);
-                        }
+                        drink = new MilkDrinkDecorator(drink, _milkAmount);
                         break;
                     case "Whippedcream":
                         drink = new WhippedcreamDrinkDecorator(drink);
+                        break;
+                    case "Coffee":
+                        drink = new CoffeeDrinkDecorator(drink, _drinkStrength);
                         break;
                     case "Whiskey":
                         drink = new WiskeyDrinkDecorator(drink);
@@ -105,6 +76,33 @@ namespace KoffieMachineDomain.Drink.DrinkFactory
             }
 
             return drink;
+        }
+
+        private IDrink GetDrink(string name)
+        {
+            if (!_drinks.Keys.Contains(name))
+            {
+                return null;
+            }
+
+            IDrink drink = _drinks[name];
+
+            return drink;
+        }
+
+        private void SetupDrinkStrategies()
+        {
+            _drinks = new Dictionary<string, IDrink>();
+
+            _drinks["Coffee"] = new CoffeeDrink(_drinkStrength);
+            _drinks["Espresso"] = new EspressoDrink();
+            _drinks["Capuccino"] = new CapuccinoDrink();
+            _drinks["Wiener Melange"] = new WienerMelangeDrink();
+            _drinks["Café au Lait"] = new CafeAuLaitDrink();
+            _drinks["Chocolate"] = new HotChocolateAdapter(false);
+            _drinks["Chocolate Deluxe"] = new HotChocolateAdapter(true);
+            _drinks["Tea"] = new TeaAdapter();
+            _drinks["Special"] = new SpecialCoffeeAdapter();
         }
 
         private List<string> SetupConfiguarions(string drinkName, IEnumerable<string> options)

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace KoffieMachineDomain.Drink.DrinkDecorators
 {
-    class WienerMelangeDrinkDecorator : CapuccinoDrinkDecorator
+    class WienerMelangeDrink : CapuccinoDrink
     {
 
-        public WienerMelangeDrinkDecorator(IDrink drink) : base(drink)
+        public WienerMelangeDrink() : base()
         {
             base.Name = "Wiener Melange";
             DrinkStrength = Strength.Weak;
@@ -17,7 +17,7 @@ namespace KoffieMachineDomain.Drink.DrinkDecorators
 
         public override double GetPrice()
         {
-            return base.GetPrice() * 2; //TODO: fix price to be baseprice * 2
+            return BaseDrinkPrice * 2;
         }
 
         public override void LogDrinkMaking(ICollection<string> log)

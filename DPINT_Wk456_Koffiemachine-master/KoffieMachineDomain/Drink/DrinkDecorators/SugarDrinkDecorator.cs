@@ -20,7 +20,7 @@ namespace KoffieMachineDomain.Drink.DrinkDecorators
             base.LogDrinkMaking(log);
 
             log.Add($"Setting sugar amount to {SugarAmount}.");
-            log.Add($"Adding sugar to {base.Name}...");
+            log.Add($"Adding sugar...");
         }
 
         public override double GetPrice()
