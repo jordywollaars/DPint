@@ -8,7 +8,7 @@
         xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         xmlns:helpers="clr-namespace:Dpint_wk456_KoffieMachine.Helpers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="620" Width="900"
+        Title="MainWindow" Height="725.5" Width="900"
         DataContext="{Binding Main, Source={StaticResource Locator }}">
     <Window.Resources>
         <helpers:EnumToBooleanConverter x:Key="EnumToBool"/>
@@ -135,7 +135,18 @@
                 <Button Command="{Binding Path=DrinkVM.DrinkWithSugarCommand}" CommandParameter="Tea" Style="{StaticResource DrinkButton}">
                     <TextBlock>Tea + sugar</TextBlock>
                 </Button>
-                <TextBlock TextWrapping="WrapWithOverflow" Width="250">How to choose your teablend? //TODO: Make this work!</TextBlock>
+                <ComboBox Width="100" Height="22" ItemsSource="{Binding Path=DrinkVM.TeaBlends}" SelectedItem="{Binding Path=DrinkVM.TeaBlend}">
+                </ComboBox>
+                <!--<TextBlock TextWrapping="WrapWithOverflow" Width="250">How to choose your teablend? //TODO: Make this work!</TextBlock>-->
+            </StackPanel>
+            <Separator />
+            <Label Content="Special coffee" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" Name="SpecialPanel" HorizontalAlignment="Center" Margin="5">
+                <Button Command="{Binding Path=DrinkVM.DrinkCommand}" CommandParameter="Special" Style="{StaticResource DrinkButton}">
+                    <TextBlock Text="{Binding Path=DrinkVM.SpecialCoffee}"></TextBlock>
+                </Button>
+                <ComboBox Width="100" Height="22" ItemsSource="{Binding Path=DrinkVM.SpecialCoffees}" SelectedItem="{Binding Path=DrinkVM.SpecialCoffee}">
+                </ComboBox>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Vertical" Margin="5" Name="Payment">

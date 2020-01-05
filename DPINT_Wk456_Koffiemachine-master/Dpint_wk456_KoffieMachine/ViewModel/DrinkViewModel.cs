@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using KoffieMachineDomain;
+using KoffieMachineDomain.DispenserAdapter;
 using KoffieMachineDomain.DrinkFactory;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,27 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             get { return _drink?.GetPrice(); }
         }
 
+        public IEnumerable<string> TeaBlends
+        {
+            get { return TeaAdapter.TeaBlends; }
+        }
+        public IEnumerable<string> SpecialCoffees
+        {
+            get { return new SpecialCoffeeJSONHandler().SpecialCoffees.Keys; }
+        }
+
+        private string _specialCoffee;
+        public string SpecialCoffee
+        {
+            get { return _specialCoffee; }
+            set { _specialCoffee = value; RaisePropertyChanged("SpecialCoffee"); }
+        }
+        private string _teaBlend;
+        public string TeaBlend
+        {
+            get { return _teaBlend; }
+            set { _teaBlend = value; RaisePropertyChanged("TeaBlend"); }
+        }
         private Strength _coffeeStrength;
         public Strength CoffeeStrength
         {
@@ -52,28 +74,28 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
 
         public ICommand DrinkCommand => new RelayCommand<string>((drinkName) =>
         {
-            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
+            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount, TeaBlend, SpecialCoffee);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>());
 
             HandleNewDrink();
         });
         public ICommand DrinkWithSugarCommand => new RelayCommand<string>((drinkName) =>
         {
-            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
+            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount, TeaBlend, SpecialCoffee);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>() { "Sugar" });
 
             HandleNewDrink();
         });
         public ICommand DrinkWithMilkCommand => new RelayCommand<string>((drinkName) =>
         {
-            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
+            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount, TeaBlend, SpecialCoffee);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>() { "Milk" });
 
             HandleNewDrink();
         });
         public ICommand DrinkWithSugarAndMilkCommand => new RelayCommand<string>((drinkName) =>
         {
-            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount);
+            _drinkFactory.SetFactorySettings(CoffeeStrength, MilkAmount, SugarAmount, TeaBlend, SpecialCoffee);
             _drink = _drinkFactory.CreateDrink(drinkName, new List<string>() { "Sugar", "Milk" });
 
             HandleNewDrink();
@@ -87,6 +109,8 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             _coffeeStrength = Strength.Normal;
             _sugarAmount = Amount.Normal;
             _milkAmount = Amount.Normal;
+            TeaBlend = TeaBlends.First();
+            SpecialCoffee = SpecialCoffees.First();
         }
 
         public void LogDrinkMaking(ObservableCollection<string> LogText)

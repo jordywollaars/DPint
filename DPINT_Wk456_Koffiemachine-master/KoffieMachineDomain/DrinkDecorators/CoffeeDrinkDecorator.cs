@@ -10,7 +10,10 @@ namespace KoffieMachineDomain.DrinkDecorators
     {
         public CoffeeDrinkDecorator(IDrink drink) : base(drink)
         {
-            base.Name = "Coffee";
+            if (base.Name == null)
+            {
+                base.Name = "Coffee";
+            }
         }
     }
 }
