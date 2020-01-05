@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain.Drink.DrinkDecorators
+namespace KoffieMachineDomain.Drink.DrinkStrategies
 {
-    public class CoffeeDrink : Drink
+    public class Coffee : Drink
     {
         public Strength DrinkStrength { get; set; }
 
-        public CoffeeDrink(Strength drinkStrength)
+        public Coffee(Strength drinkStrength)
         {
             if (base.Name == null)
             {

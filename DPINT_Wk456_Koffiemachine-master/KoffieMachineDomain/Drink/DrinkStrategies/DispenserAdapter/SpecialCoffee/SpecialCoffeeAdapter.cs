@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain.Drink.DispenserAdapter.SpecialCoffee
+namespace KoffieMachineDomain.Drink.DrinkStrategies.DispenserAdapter.SpecialCoffee
 {
     public class SpecialCoffeeAdapter : SpecialCoffeeJSONHandler, IDrink
     {

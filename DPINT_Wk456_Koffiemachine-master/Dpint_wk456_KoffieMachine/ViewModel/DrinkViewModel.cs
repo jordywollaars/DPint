@@ -2,8 +2,6 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using KoffieMachineDomain.Drink;
 using KoffieMachineDomain.Drink.DrinkFactory;
-using KoffieMachineDomain.Drink.DispenserAdapter.SpecialCoffee;
-using KoffieMachineDomain.Drink.DispenserAdapter.TeaBlendAndHotChoc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using KoffieMachineDomain.Payment;
+using KoffieMachineDomain.Drink.DrinkStrategies.DispenserAdapter.TeaBlendAndHotChoc;
+using KoffieMachineDomain.Drink.DrinkStrategies.DispenserAdapter.SpecialCoffee;
 
 namespace Dpint_wk456_KoffieMachine.ViewModel
 {
@@ -126,7 +126,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         {
             if (_drink != null)
             {
-                _mainVM.PaymentVM.SetRemainingPrice(DrinkPrice);
+                _mainVM.PaymentVM.SetPrice(DrinkPrice);
                 _mainVM.LogText.Add($"Selected {DrinkName}, price: {_mainVM.PaymentVM.RemainingPriceToPay.ToString("C", CultureInfo.CurrentCulture)}");
                 RaisePropertyChanged(() => DrinkName);
                 RaisePropertyChanged(() => DrinkPrice);

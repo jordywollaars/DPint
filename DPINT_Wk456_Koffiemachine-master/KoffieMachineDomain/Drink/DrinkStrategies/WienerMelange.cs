@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain.Drink.DrinkDecorators
+namespace KoffieMachineDomain.Drink.DrinkStrategies
 {
-    class WienerMelangeDrink : CapuccinoDrink
+    class WienerMelange : Capuccino
     {
 
-        public WienerMelangeDrink() : base()
+        public WienerMelange() : base()
         {
             base.Name = "Wiener Melange";
             DrinkStrength = Strength.Weak;

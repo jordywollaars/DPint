@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain.Drink.DrinkDecorators
+namespace KoffieMachineDomain.Drink.DrinkStrategies
 {
-    class EspressoDrink : Drink
+    class Espresso : Drink
     {
-        public EspressoDrink() : base()
+        public Espresso() : base()
         {
             base.Name = "Espresso";
         }

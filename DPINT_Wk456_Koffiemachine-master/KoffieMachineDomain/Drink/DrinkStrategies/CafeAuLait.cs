@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain.Drink.OLD
+namespace KoffieMachineDomain.Drink.DrinkStrategies
 {
-    public class CafeAuLait : Drink
+    class CafeAuLait : Drink
     {
-        public string Name => "Café au Lait";
-
-        public override double GetPrice()
+        public CafeAuLait() : base()
         {
-            return BaseDrinkPrice + 0.5;
+            base.Name = "Café au Lait";
         }
 
         public override void LogDrinkMaking(ICollection<string> log)
@@ -20,7 +18,11 @@ namespace KoffieMachineDomain.Drink.OLD
             base.LogDrinkMaking(log);
             log.Add("Filling half with coffee...");
             log.Add("Filling other half with milk...");
-            log.Add($"Finished making {Name}");
+        }
+
+        public override double GetPrice()
+        {
+            return base.GetPrice() + 0.5;
         }
     }
 }

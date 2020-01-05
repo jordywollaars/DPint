@@ -64,6 +64,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
         public PaymentViewModel(MainViewModel mainVM)
         {
             _mainViewModel = mainVM;
+
             _payment = new Payment();
             _payment.Subscribe(_mainViewModel.DrinkVM);
 
@@ -76,7 +77,7 @@ namespace Dpint_wk456_KoffieMachine.ViewModel
             SelectedPaymentCardUsername = PaymentCardUsernames[0];
         }
 
-        public void SetRemainingPrice(double priceToPay)
+        public void SetPrice(double priceToPay)
         {
             _payment.RemainingPriceToPay = priceToPay;
         }

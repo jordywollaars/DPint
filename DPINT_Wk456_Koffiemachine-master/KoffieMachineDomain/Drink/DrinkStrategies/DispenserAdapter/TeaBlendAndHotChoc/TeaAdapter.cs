@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TeaAndChocoLibrary;
 
-namespace KoffieMachineDomain.Drink.DispenserAdapter.TeaBlendAndHotChoc
+namespace KoffieMachineDomain.Drink.DrinkStrategies.DispenserAdapter.TeaBlendAndHotChoc
 {
     public class TeaAdapter : Tea, IDrink
     {

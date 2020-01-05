@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using KoffieMachineDomain.Drink.DrinkDecorators;
 using KoffieMachineDomain.Drink.DrinkDecorators.SpecialDrinkDecorators;
-using KoffieMachineDomain.Drink.DispenserAdapter.SpecialCoffee;
-using KoffieMachineDomain.Drink.DispenserAdapter.TeaBlendAndHotChoc;
+using KoffieMachineDomain.Drink.DrinkStrategies;
+using KoffieMachineDomain.Drink.DrinkStrategies.DispenserAdapter.SpecialCoffee;
+using KoffieMachineDomain.Drink.DrinkStrategies.DispenserAdapter.TeaBlendAndHotChoc;
 
 namespace KoffieMachineDomain.Drink.DrinkFactory
 {
@@ -34,7 +35,8 @@ namespace KoffieMachineDomain.Drink.DrinkFactory
             {
                 options = ((SpecialCoffeeAdapter)drink).GetOptions(_specialCoffee).ToList();
             }
-            else if(drinkName == "Tea")
+
+            if (drinkName == "Tea")
             {
                 ((TeaAdapter)drink).SetTeaBlend(_teaBlend);
             }
@@ -94,25 +96,17 @@ namespace KoffieMachineDomain.Drink.DrinkFactory
         {
             _drinks = new Dictionary<string, IDrink>();
 
-            _drinks["Coffee"] = new CoffeeDrink(_drinkStrength);
-            _drinks["Espresso"] = new EspressoDrink();
-            _drinks["Capuccino"] = new CapuccinoDrink();
-            _drinks["Wiener Melange"] = new WienerMelangeDrink();
-            _drinks["Café au Lait"] = new CafeAuLaitDrink();
+            _drinks["Coffee"] = new Coffee(_drinkStrength);
+            _drinks["Espresso"] = new Espresso();
+            _drinks["Capuccino"] = new Capuccino();
+            _drinks["Wiener Melange"] = new WienerMelange();
+            _drinks["Café au Lait"] = new CafeAuLait();
             _drinks["Chocolate"] = new HotChocolateAdapter(false);
             _drinks["Chocolate Deluxe"] = new HotChocolateAdapter(true);
             _drinks["Tea"] = new TeaAdapter();
             _drinks["Special"] = new SpecialCoffeeAdapter();
         }
-
-        private List<string> SetupConfiguarions(string drinkName, IEnumerable<string> options)
-        {
-            List<string> configurations = new List<string>();
-            configurations.Add(drinkName);
-            options.ToList().ForEach(x => configurations.Add(x));
-            return configurations;
-        }
-
+        
         public void SetFactorySettings(Strength strength, Amount milk, Amount sugar, string teaBlend, string specialCoffee)
         {
             _drinkStrength = strength;

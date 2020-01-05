@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KoffieMachineDomain.Drink.DrinkDecorators
+namespace KoffieMachineDomain.Drink.DrinkDecorators.SpecialDrinkDecorators
 {
     public class CoffeeDrinkDecorator : BaseDrinkDecorator
     {
